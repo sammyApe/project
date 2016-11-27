@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "courseList",
+            "otherEntityName": "course",
+            "otherEntityRelationshipName": "lecturer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "preferredDayTimeList",
+            "otherEntityName": "dayTime",
+            "otherEntityRelationshipName": "lecturer"
+        },
+        {
+            "relationshipName": "session",
+            "otherEntityName": "session",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "schedule",
+            "otherEntityName": "schedule",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "semester",
+            "fieldType": "SemesterEnum",
+            "fieldValues": "SPRING,SUMMER,FALL"
+        }
+    ],
+    "changelogDate": "20161127031307",
+    "entityTableName": "lecturer",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

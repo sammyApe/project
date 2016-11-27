@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "lecturer",
+            "otherEntityName": "lecturer",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "semester",
+            "fieldType": "SemesterEnum",
+            "fieldValues": "SPRING,SUMMER,FALL"
+        }
+    ],
+    "changelogDate": "20161127031308",
+    "entityTableName": "course",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

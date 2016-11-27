@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "lecturer",
+            "otherEntityName": "lecturer",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "timePreferenceList",
+            "otherEntityName": "time",
+            "otherEntityRelationshipName": "dayTime"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dayPreference",
+            "fieldType": "Day",
+            "fieldValues": "MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY"
+        }
+    ],
+    "changelogDate": "20161127031310",
+    "entityTableName": "day_time",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

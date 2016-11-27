@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "lecturerList",
+            "otherEntityName": "lecturer",
+            "otherEntityRelationshipName": "session"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161127031309",
+    "entityTableName": "session",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

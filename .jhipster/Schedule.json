@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "lecturerList",
+            "otherEntityName": "lecturer",
+            "otherEntityRelationshipName": "schedule"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161127031312",
+    "entityTableName": "schedule",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "dayTime",
+            "otherEntityName": "dayTime",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "timePreference",
+            "fieldType": "TimePreference",
+            "fieldValues": "MORNINGS,MORNINGS_AND_AFTERNOONS,MORNINGS_AND_EVENINGS,AFTERNOONS,AFTERNOONS_AND_EVENINGS,EVENINGS"
+        }
+    ],
+    "changelogDate": "20161127031311",
+    "entityTableName": "time",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}
