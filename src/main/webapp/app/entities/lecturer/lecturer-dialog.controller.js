@@ -9,7 +9,6 @@
 
     function LecturerDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Lecturer, Course, DayTime, Session, Schedule) {
         var vm = this;
-
         vm.lecturer = entity;
         vm.clear = clear;
         vm.save = save;
@@ -17,6 +16,8 @@
         vm.daytimes = DayTime.query();
         vm.sessions = Session.query();
         vm.schedules = Schedule.query();
+
+
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -44,6 +45,8 @@
         function onSaveError () {
             vm.isSaving = false;
         }
+
+        
 
 
     }

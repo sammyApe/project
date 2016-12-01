@@ -26,6 +26,35 @@
             </div>
         </div>
 
+<span>Lecturer details: {{vm.lecturer}}</span>
+
+        <div class="form-group">
+            <label class="control-label" for="field_dayPreference">Day Preference</label>
+            <select class="form-control" name="dayPreference" ng-model="vm.lecturer.dayTimePreferenceList.dayPreference" id="field_dayPreference">
+                <option value="MONDAY">MONDAY</option>
+                <option value="TUESDAY">TUESDAY</option>
+                <option value="WEDNESDAY">WEDNESDAY</option>
+                <option value="THURSDAY">THURSDAY</option>
+                <option value="FRIDAY">FRIDAY</option>
+                <option value="SATURDAY">SATURDAY</option>
+                <option value="SUNDAY">SUNDAY</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_timePreference">Time Preference</label>
+            <select class="form-control selectpicker" name="timePreference" ng-model="vm.lecturer.dayTimePreferenceList.timePreferenceLists" id="field_timePreference" multiple>
+                <option value="MORNINGS">MORNINGS</option>
+                <option value="MORNINGS_AND_AFTERNOONS">MORNINGS_AND_AFTERNOONS</option>
+                <option value="MORNINGS_AND_EVENINGS">MORNINGS_AND_EVENINGS</option>
+                <option value="AFTERNOONS">AFTERNOONS</option>
+                <option value="AFTERNOONS_AND_EVENINGS">AFTERNOONS_AND_EVENINGS</option>
+                <option value="EVENINGS">EVENINGS</option>
+
+            </select>
+        </div>
+
+
 
     </div>
     <div class="modal-footer">
