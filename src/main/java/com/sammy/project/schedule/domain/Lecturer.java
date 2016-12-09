@@ -31,11 +31,14 @@ public class Lecturer implements Serializable {
     @Column(name = "semester")
     private SemesterEnum semester;
 
-    @OneToMany(mappedBy = "lecturer", cascade=CascadeType.DETACH)
+    @OneToMany(mappedBy = "lecturer", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private Set<Course> courseLists = new HashSet<>();
 
-    @OneToMany(mappedBy = "lecturer", cascade=CascadeType.PERSIST)
-    private Set<DayTime> preferredDayTimeLists = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "lecturer_dayTime", joinColumns = {
+        @JoinColumn(name = "lecturer_ID", nullable = false)},
+        inverseJoinColumns = {@JoinColumn(name = "preferred_Day_ID")})
+    private Set<DayTime> preferredDayTimeList = new HashSet<>();
 
     @ManyToOne(cascade=CascadeType.PERSIST)
     private Session session;
@@ -103,29 +106,18 @@ public class Lecturer implements Serializable {
         this.courseLists = courses;
     }
 
-    public Set<DayTime> getPreferredDayTimeLists() {
-        return preferredDayTimeLists;
+    public Set<DayTime> getPreferredDayTimeList() {
+        return preferredDayTimeList;
     }
 
     public Lecturer preferredDayTimeLists(Set<DayTime> dayTimes) {
-        this.preferredDayTimeLists = dayTimes;
+        this.preferredDayTimeList = dayTimes;
         return this;
     }
 
-    public Lecturer addPreferredDayTimeList(DayTime dayTime) {
-        preferredDayTimeLists.add(dayTime);
-        dayTime.setLecturer(this);
-        return this;
-    }
 
-    public Lecturer removePreferredDayTimeList(DayTime dayTime) {
-        preferredDayTimeLists.remove(dayTime);
-        dayTime.setLecturer(null);
-        return this;
-    }
-
-    public void setPreferredDayTimeLists(Set<DayTime> dayTimes) {
-        this.preferredDayTimeLists = dayTimes;
+    public void setPreferredDayTimeList(Set<DayTime> dayTimes) {
+        this.preferredDayTimeList = dayTimes;
     }
 
     public Session getSession() {

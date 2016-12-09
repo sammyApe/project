@@ -1,12 +1,13 @@
 package com.sammy.project.schedule.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.sammy.project.schedule.domain.DayTime;
+import com.sammy.project.schedule.domain.Lecturer;
 import com.sammy.project.schedule.domain.Schedule;
 import com.sammy.project.schedule.service.ScheduleService;
 import com.sammy.project.schedule.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +27,7 @@ import java.util.Optional;
 public class ScheduleResource {
 
     private final Logger log = LoggerFactory.getLogger(ScheduleResource.class);
-        
+
     @Inject
     private ScheduleService scheduleService;
 
@@ -41,8 +43,12 @@ public class ScheduleResource {
     public ResponseEntity<Schedule> createSchedule(@RequestBody Schedule schedule) throws URISyntaxException {
         log.debug("REST request to save Schedule : {}", schedule);
         if (schedule.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("schedule", "idexists", "A new schedule cannot already have an ID")).body(null);
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert("schedule", "id exists", "A new schedule cannot already have an ID"))
+                .body(null);
+
         }
+
         Schedule result = scheduleService.save(schedule);
         return ResponseEntity.created(new URI("/api/schedules/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("schedule", result.getId().toString()))
@@ -52,7 +58,7 @@ public class ScheduleResource {
     /**
      * PUT  /schedules : Updates an existing schedule.
      *
-     * @param schedule the schedule to update
+     * @param lecturer the schedule to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated schedule,
      * or with status 400 (Bad Request) if the schedule is not valid,
      * or with status 500 (Internal Server Error) if the schedule couldnt be updated
@@ -60,15 +66,16 @@ public class ScheduleResource {
      */
     @PutMapping("/schedules")
     @Timed
-    public ResponseEntity<Schedule> updateSchedule(@RequestBody Schedule schedule) throws URISyntaxException {
-        log.debug("REST request to update Schedule : {}", schedule);
-        if (schedule.getId() == null) {
-            return createSchedule(schedule);
+    public void updateSchedule(@RequestBody Lecturer lecturer, Calendar calendar) throws URISyntaxException {
+        log.debug("REST request to update lecturer  : {} and date {}", lecturer, calendar);
+
+        if (lecturer.getPreferredDayTimeList() != null) {
+            for (DayTime dayTime : lecturer.getPreferredDayTimeList()) {
+                if (dayTime.getTimePreferenceList() != null) {
+
+                }
+            }
         }
-        Schedule result = scheduleService.save(schedule);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("schedule", schedule.getId().toString()))
-            .body(result);
     }
 
     /**
@@ -114,5 +121,6 @@ public class ScheduleResource {
         scheduleService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("schedule", id.toString())).build();
     }
+
 
 }

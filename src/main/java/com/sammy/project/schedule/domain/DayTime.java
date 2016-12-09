@@ -6,6 +6,7 @@ import com.sammy.project.schedule.domain.enumeration.Day;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,12 +27,15 @@ public class DayTime implements Serializable {
     @Column(name = "day_preference")
     private Day dayPreference;
 
-    @ManyToOne
+    @ManyToMany()
+    @JoinTable(name = "lecturer_dayTime", joinColumns = {
+        @JoinColumn(name = "preferred_Day_ID", nullable = false)},
+        inverseJoinColumns = {@JoinColumn(name = "lecturer_ID")})
     @JsonIgnore
-    private Lecturer lecturer;
+    private List<Lecturer> lecturerList;
 
-    @OneToMany(mappedBy = "dayTime")
-    private Set<Time> timePreferenceLists = new HashSet<>();
+    @OneToMany(mappedBy = "dayTime", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Time> timePreferenceList = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -54,42 +58,37 @@ public class DayTime implements Serializable {
         this.dayPreference = dayPreference;
     }
 
-    public Lecturer getLecturer() {
-        return lecturer;
+    public List<Lecturer> getLecturerList() {
+        return lecturerList;
     }
 
-    public DayTime lecturer(Lecturer lecturer) {
-        this.lecturer = lecturer;
-        return this;
+    public void setLecturerList(List<Lecturer> lecturerList) {
+        this.lecturerList = lecturerList;
     }
 
-    public void setLecturer(Lecturer lecturer) {
-        this.lecturer = lecturer;
-    }
-
-    public Set<Time> getTimePreferenceLists() {
-        return timePreferenceLists;
+    public Set<Time> getTimePreferenceList() {
+        return timePreferenceList;
     }
 
     public DayTime timePreferenceLists(Set<Time> times) {
-        this.timePreferenceLists = times;
+        this.timePreferenceList = times;
         return this;
     }
 
     public DayTime addTimePreferenceList(Time time) {
-        timePreferenceLists.add(time);
+        timePreferenceList.add(time);
         time.setDayTime(this);
         return this;
     }
 
     public DayTime removeTimePreferenceList(Time time) {
-        timePreferenceLists.remove(time);
+        timePreferenceList.remove(time);
         time.setDayTime(null);
         return this;
     }
 
-    public void setTimePreferenceLists(Set<Time> times) {
-        this.timePreferenceLists = times;
+    public void setTimePreferenceList(Set<Time> times) {
+        this.timePreferenceList = times;
     }
 
     @Override
@@ -101,7 +100,7 @@ public class DayTime implements Serializable {
             return false;
         }
         DayTime dayTime = (DayTime) o;
-        if(dayTime.id == null || id == null) {
+        if (dayTime.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, dayTime.id);

@@ -12,10 +12,13 @@
         vm.lecturer = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.addDayTime=addDayTime;
         vm.courses = Course.query();
         vm.daytimes = DayTime.query();
         vm.sessions = Session.query();
         vm.schedules = Schedule.query();
+        vm.dayTimePreference={};
+
 
 
 
@@ -27,7 +30,15 @@
             $uibModalInstance.dismiss('cancel');
         }
 
+        function addDayTime(t)
+        {
+          vm.lecturer.preferredDayTimeList.push(angular.copy(t));
+        }
+
+
+
         function save () {
+        debugger;
             vm.isSaving = true;
             if (vm.lecturer.id !== null) {
                 Lecturer.update(vm.lecturer, onSaveSuccess, onSaveError);
@@ -46,7 +57,7 @@
             vm.isSaving = false;
         }
 
-        
+
 
 
     }

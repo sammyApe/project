@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="samuel (generated)" id="1481000597877-1">
+        <createTable tableName="course">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="coursePK"/>
+            </column>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="semester" type="VARCHAR(255)"/>
+            <column name="lecturer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-2">
+        <createTable tableName="day_time">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="day_timePK"/>
+            </column>
+            <column name="day_preference" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-3">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-4">
+        <createTable tableName="jhi_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="timestamp"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-5">
+        <createTable tableName="jhi_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-6">
+        <createTable tableName="jhi_persistent_token">
+            <column name="series" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ip_address" type="VARCHAR(39)"/>
+            <column name="token_date" type="date"/>
+            <column name="token_value" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_agent" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-7">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(100)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="lang_key" type="VARCHAR(5)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)"/>
+            <column name="reset_date" type="timestamp"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-8">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-9">
+        <createTable tableName="lecturer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="lecturerPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="semester" type="VARCHAR(255)"/>
+            <column name="schedule_id" type="BIGINT"/>
+            <column name="session_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-10">
+        <createTable tableName="lecturer_day_time">
+            <column name="preferred_day_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lecturer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-11">
+        <createTable tableName="schedule">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="schedulePK"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-12">
+        <createTable tableName="session">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="sessionPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-13">
+        <createTable tableName="time">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="timePK"/>
+            </column>
+            <column name="time_preference" type="VARCHAR(255)"/>
+            <column name="day_time_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-14">
+        <addPrimaryKey columnNames="event_id, name" tableName="jhi_persistent_audit_evt_data"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-15">
+        <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-16">
+        <addPrimaryKey columnNames="lecturer_id, preferred_day_id"
+                       tableName="lecturer_day_time"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-17">
+        <addPrimaryKey columnNames="name"
+                       constraintName="jhi_authorityPK"
+                       tableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-18">
+        <addPrimaryKey columnNames="series"
+                       constraintName="jhi_persistent_tokenPK"
+                       tableName="jhi_persistent_token"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-19">
+        <addUniqueConstraint columnNames="email"
+                             constraintName="UC_JHI_USEREMAIL_COL"
+                             tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-20">
+        <addUniqueConstraint columnNames="login"
+                             constraintName="UC_JHI_USERLOGIN_COL"
+                             tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-21">
+        <addForeignKeyConstraint baseColumnNames="day_time_id"
+                                 baseTableName="time"
+                                 constraintName="FK_5e37kj44idr3767ng37qqskte"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="day_time"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-22">
+        <addForeignKeyConstraint baseColumnNames="lecturer_id"
+                                 baseTableName="lecturer_day_time"
+                                 constraintName="FK_7c6ak2btla8q4r112yj7ifrjf"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="lecturer"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-23">
+        <addForeignKeyConstraint baseColumnNames="schedule_id"
+                                 baseTableName="lecturer"
+                                 constraintName="FK_89tyjx3xqptctwgxtf2byv4e8"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="schedule"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-24">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="jhi_persistent_token"
+                                 constraintName="FK_c2yetr6vr7nrqhjvi1rl24b3l"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-25">
+        <addForeignKeyConstraint baseColumnNames="event_id"
+                                 baseTableName="jhi_persistent_audit_evt_data"
+                                 constraintName="FK_evb970jo5bi8aon8s65c0lyyn"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="event_id"
+                                 referencedTableName="jhi_persistent_audit_event"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-26">
+        <addForeignKeyConstraint baseColumnNames="preferred_day_id"
+                                 baseTableName="lecturer_day_time"
+                                 constraintName="FK_flxgbtxcgpl8bq5dm33ppqkkc"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="day_time"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-27">
+        <addForeignKeyConstraint baseColumnNames="authority_name"
+                                 baseTableName="jhi_user_authority"
+                                 constraintName="FK_ik5r332jlvpolfr7e5n7oi42l"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="name"
+                                 referencedTableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-28">
+        <addForeignKeyConstraint baseColumnNames="session_id"
+                                 baseTableName="lecturer"
+                                 constraintName="FK_m4lnxdq0h9jebdt582vc1qv1n"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="session"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-29">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="jhi_user_authority"
+                                 constraintName="FK_pg0oaw6mr9pt3ibeihdc1jwof"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481000597877-30">
+        <addForeignKeyConstraint baseColumnNames="lecturer_id"
+                                 baseTableName="course"
+                                 constraintName="FK_qjyfm5idwas5d0fd0awwk6aaa"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="lecturer"/>
+    </changeSet>
+</databaseChangeLog>

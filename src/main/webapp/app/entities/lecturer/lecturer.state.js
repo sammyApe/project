@@ -98,11 +98,9 @@
                                 name: null,
                                 semester: null,
                                 id: null,
-                                preferredDayTimeLists:
-                                {
-                                    dayPreference: null,
-                                    timePreferenceLists: []
-                                }
+                                preferredDayTimeList:
+                                [
+                                ]
 
 
 

@@ -29,6 +29,7 @@ public class Schedule implements Serializable {
     @OneToMany(mappedBy = "schedule")
     private Set<Lecturer> lecturerLists = new HashSet<>();
 
+
     public Long getId() {
         return id;
     }

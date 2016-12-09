@@ -31,7 +31,7 @@ public class Course implements Serializable {
     @Column(name = "semester")
     private SemesterEnum semester;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JsonIgnore
     private Lecturer lecturer;
 

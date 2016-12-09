@@ -12,9 +12,12 @@
 
         vm.lecturers = [];
 
+
+
         loadAll();
 
         function loadAll() {
+        debugger;
             Lecturer.query(function(result) {
                 vm.lecturers = result;
             });

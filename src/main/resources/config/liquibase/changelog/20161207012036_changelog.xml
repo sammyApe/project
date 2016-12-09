@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="samuel (generated)" id="1481073661145-1">
+        <createTable tableName="course">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="coursePK"/>
+            </column>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="semester" type="VARCHAR(255)"/>
+            <column name="lecturer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-2">
+        <createTable tableName="day_time">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="day_timePK"/>
+            </column>
+            <column name="day_preference" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-3">
+        <createTable tableName="lecturer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="lecturerPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="semester" type="VARCHAR(255)"/>
+            <column name="schedule_id" type="BIGINT"/>
+            <column name="session_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-4">
+        <createTable tableName="lecturer_day_time">
+            <column name="preferred_day_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lecturer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-5">
+        <createTable tableName="schedule">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="schedulePK"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-6">
+        <createTable tableName="session">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="sessionPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-7">
+        <createTable tableName="time">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="timePK"/>
+            </column>
+            <column name="time_preference" type="VARCHAR(255)"/>
+            <column name="day_time_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-8">
+        <addPrimaryKey columnNames="lecturer_id, preferred_day_id"
+                       tableName="lecturer_day_time"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-9">
+        <addForeignKeyConstraint baseColumnNames="day_time_id"
+                                 baseTableName="time"
+                                 constraintName="FK_5e37kj44idr3767ng37qqskte"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="day_time"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-10">
+        <addForeignKeyConstraint baseColumnNames="lecturer_id"
+                                 baseTableName="lecturer_day_time"
+                                 constraintName="FK_7c6ak2btla8q4r112yj7ifrjf"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="lecturer"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-11">
+        <addForeignKeyConstraint baseColumnNames="schedule_id"
+                                 baseTableName="lecturer"
+                                 constraintName="FK_89tyjx3xqptctwgxtf2byv4e8"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="schedule"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-12">
+        <addForeignKeyConstraint baseColumnNames="preferred_day_id"
+                                 baseTableName="lecturer_day_time"
+                                 constraintName="FK_flxgbtxcgpl8bq5dm33ppqkkc"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="day_time"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-13">
+        <addForeignKeyConstraint baseColumnNames="session_id"
+                                 baseTableName="lecturer"
+                                 constraintName="FK_m4lnxdq0h9jebdt582vc1qv1n"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="session"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-14">
+        <addForeignKeyConstraint baseColumnNames="lecturer_id"
+                                 baseTableName="course"
+                                 constraintName="FK_qjyfm5idwas5d0fd0awwk6aaa"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="lecturer"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481073661145-15">
+        <dropDefaultValue columnDataType="timestamp"
+                          columnName="created_date"
+                          tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

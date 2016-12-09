@@ -17,6 +17,15 @@ public class Time implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+
+    public Time() {
+    }
+
+    public Time(String timePreference) {
+        this.timePreference = TimePreference.valueOf(timePreference);
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,7 +34,7 @@ public class Time implements Serializable {
     @Column(name = "time_preference")
     private TimePreference timePreference;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     private DayTime dayTime;
 

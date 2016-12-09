@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="samuel (generated)" id="1480922258278-1">
+        <createTable tableName="lecturer_day_time">
+            <column name="lecturer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="preferred_day_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1480922258278-2">
+        <addPrimaryKey columnNames="lecturer_id, preferred_day_id"
+                       tableName="lecturer_day_time"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1480922258278-3">
+        <addForeignKeyConstraint baseColumnNames="lecturer_id"
+                                 baseTableName="lecturer_day_time"
+                                 constraintName="FK_7c6ak2btla8q4r112yj7ifrjf"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="lecturer"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1480922258278-4">
+        <addForeignKeyConstraint baseColumnNames="preferred_day_id"
+                                 baseTableName="lecturer_day_time"
+                                 constraintName="FK_flxgbtxcgpl8bq5dm33ppqkkc"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="day_time"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1480922258278-5">
+        <dropForeignKeyConstraint baseTableName="DAY_TIME" constraintName="FK_DAY_TIME_LECTURER_ID"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1480922258278-6">
+        <dropColumn columnName="LECTURER_ID" tableName="DAY_TIME"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1480922258278-7">
+        <dropDefaultValue columnDataType="timestamp"
+                          columnName="created_date"
+                          tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

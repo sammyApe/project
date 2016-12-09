@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="samuel (generated)" id="1481006981589-1">
+        <createTable tableName="day_time_time_preference_list">
+            <column name="day_time_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_preference_list" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481006981589-2">
+        <addForeignKeyConstraint baseColumnNames="day_time_id"
+                                 baseTableName="day_time_time_preference_list"
+                                 constraintName="FK_odsntno59yt8ecp3djtim4vgy"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="day_time"/>
+    </changeSet>
+    <changeSet author="samuel (generated)" id="1481006981589-3">
+        <dropDefaultValue columnDataType="timestamp"
+                          columnName="created_date"
+                          tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>
