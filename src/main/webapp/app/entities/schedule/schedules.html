@@ -1,7 +1,21 @@
+<div class="container">
 
-<div id='calendar'>
+    <div class="row">
+        <div id='calendar' class="col-md-10">
 
 
+        </div>
+        <div class="col-md-2">
+            <ul ng-repeat="lecturer in vm.lecturers track by lecturer.id">
 
+                <div class="drag" style="border:1px solid blue">
+                    <li>{{lecturer.name}}</li>
+                </div>
+
+
+            </ul>
+        </div>
+    </div>
 </div>
+
 
