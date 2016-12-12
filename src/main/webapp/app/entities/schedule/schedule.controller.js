@@ -7,17 +7,16 @@
 
     ScheduleController.$inject = ['$scope', '$state', 'Schedule'];
 
+
     function ScheduleController ($scope, $state, Schedule) {
         var vm = this;
 
         vm.schedules = [];
 
-        loadAll();
-
-        function loadAll() {
-            Schedule.query(function(result) {
-                vm.schedules = result;
-            });
-        }
+angular.element(document).ready(function () {
+            $('#calendar').fullCalendar({
+                    // put your options and callbacks here
+                })
+        });
     }
 })();
